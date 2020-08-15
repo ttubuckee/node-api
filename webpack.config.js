@@ -10,6 +10,9 @@ module.exports = async function(mode = `production`) {
 	return {
 		mode: mode,
 		target: `node`,
+		optimization: {
+			minimize: false
+		},
 		context: __dirname,
 		node: {
 			console: true,

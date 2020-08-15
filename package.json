@@ -20,11 +20,8 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
-    "cheerio": "^1.0.0-rc.3",
-    "cli-color": "^2.0.0",
     "dotenv": "^8.2.0",
-    "iconv": "^3.0.0",
-    "mysql": "^2.18.1",
-    "request": "^2.88.2"
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
   }
 }
