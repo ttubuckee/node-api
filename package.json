@@ -1,7 +1,7 @@
 {
-  "name": "parsing-node",
+  "name": "ARMERA-NODE",
   "version": "1.0.0",
-  "description": "KUNG 시간표 파싱 프로그램",
+  "description": "ARmera NodeJS API",
   "main": "index.js",
   "scripts": {
     "start": "cp .env dist/.env && node ./dist/script.js",
