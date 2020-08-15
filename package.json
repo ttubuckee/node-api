@@ -1,0 +1,30 @@
+{
+  "name": "parsing-node",
+  "version": "1.0.0",
+  "description": "KUNG 시간표 파싱 프로그램",
+  "main": "index.js",
+  "scripts": {
+    "start": "cp .env dist/.env && node ./dist/script.js",
+    "cleanup": "rm -rf dist && mkdir dist",
+    "build": "npm run cleanup && ./node_modules/.bin/webpack --mode=production --optimize-minimize",
+    "build:watch": "npm run cleanup && ./node_modules/.bin/webpack --mode=none --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "babel-loader": "^8.1.0",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "cli-color": "^2.0.0",
+    "dotenv": "^8.2.0",
+    "iconv": "^3.0.0",
+    "mysql": "^2.18.1",
+    "request": "^2.88.2"
+  }
+}
