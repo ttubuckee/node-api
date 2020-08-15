@@ -1,50 +1,15 @@
-require('dotenv').config();
 import express from "express";
-import mysql from "mysql";
+import { getRouteInfo, getBeaconListInRoute } from "@/components/database";
 
 const router = express.Router();
-const connection = mysql.createConnection({
-	host     : process.env.DB_HOST,
-	user     : process.env.DB_USERNAME,
-	password : process.env.DB_PASSWORD,
-	database : process.env.DB_DATABASE
-});
 
 router.get('/info/:id',(req,res)=>{
-	const connection = mysql.createConnection({
-		host     : process.env.DB_HOST,
-		user     : process.env.DB_USERNAME,
-		password : process.env.DB_PASSWORD,
-		database : process.env.DB_DATABASE
-	});
-
-	console.log('route_info request');
-	connection.connect();
-	const sql = 'SELECT * FROM route WHERE id ='+req.params.id;
-	connection.query(sql,(err,rows,fields)=>{
-		if(err)console.log(err);
-		res.send(rows);
-		connection.end();
-	});
-
+	const { id } = req.params;
+	getRouteInfo(id).then(res.send);
 });
-
 router.get('/list/:id',(req,res)=>{
-	const connection = mysql.createConnection({
-		host     : process.env.DB_HOST,
-		user     : process.env.DB_USERNAME,
-		password : process.env.DB_PASSWORD,
-		database : process.env.DB_DATABASE
-	});
-
-	console.log('route_list request');
-	connection.connect();
-	const sql = 'SELECT * FROM route_beacon WHERE route_id ='+req.params.id;
-	connection.query(sql,(err,rows,fields)=>{
-		if(err)console.log(err);
-		res.send(rows);
-		connection.end();
-	});
+	const { id } = req.params;
+	getBeaconListInRoute(id).then(res.send);
 });
 
 export default router;
