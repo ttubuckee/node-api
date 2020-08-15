@@ -1,19 +1,18 @@
 require('dotenv').config();
 import express from "express";
-import mysql from "mysql";
 
 import { getBeaconInfo, getBeaconImageInfo } from "@/components/database";
 
 const router = express.Router();
 
-router.get('info/:id',(req,res)=>{
+router.get('/info/:id',(req,res)=>{
 	const { id } = req.params;
-	getBeaconInfo(id).then(res.send);
+	getBeaconInfo(id).then(e => res.send(e));
 });
 
-router.get('image/:id',(req,res)=>{
+router.get('/image/:id',(req,res)=>{
 	const { id } = req.params;
-	getBeaconImageInfo(id).then(res.send);
+	getBeaconImageInfo(id).then(e => res.send(e));
 });
 
 export default router;
