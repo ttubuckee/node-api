@@ -1,11 +1,16 @@
 /*
 	이 서버의 역할
 
+	Prefix
+
 	- /beacon
-		/:id ->  해당 id를 가진 비콘의 정보를 JSON 형식으로 보내준다.
+		/info/:id  -> 해당 id를 가진 비콘의 정보를 JSON 형식으로 보내준다.
+		/image/:id -> 해당 id를 가진 비콘의 이미지 정보를 보내준다.
 	- /route
-		/list/:id -> 해당 id를 가진 경로의 비콘 리스트를 JSON 형식으로 보내준다.
-		/info/:id -> 해당 id를 가진 경로의 info를 JSON 형식으로 보내준다.
+		/info/:id  -> 해당 id를 가진 경로의 정보를 JSON 형식으로 보내준다.
+		/list/:id  -> 해당 id를 가진 경로의 비콘 리스트를 JSON 형식으로 보내준다.
+
+
  */
 require('dotenv').config();
 
