@@ -19,23 +19,8 @@ require('dotenv').config();
 import express from "express";
 import path from "path";
 
-// const app = express();
-// const connection = mysql.createConnection({
-// 	host     : process.env.DB_HOST,
-// 	user     : process.env.DB_USERNAME,
-// 	password : process.env.DB_PASSWORD,
-// 	database : process.env.DB_DATABASE
-// });
-//
-// app.use('/beacon',beacon);
-// app.use('/route',route);
-
-// app.listen(process.env.SERVER_PORT, _ => {
-// 	console.log('server is running on port '+process.env.SERVER_PORT);
-// });
-
 import generateImageRoute from "./routes/image";
-
+import generateBeaconRoute from "./routes/beacon";
 
 (_ => {
 	const app = express();
@@ -44,6 +29,7 @@ import generateImageRoute from "./routes/image";
 	global.location_url = `${SERVER_HOST}`;
 
 	app.use(`/image`, generateImageRoute());
+	app.use(`/beacon`, generateBeaconRoute());
 
 	app.listen(SERVER_PORT, _ => {
 		console.log('server is running on port '+process.env.SERVER_PORT);

@@ -9,8 +9,7 @@ const responseImageUploadForm = (_, res) => {
 	fs.readFile(htmlPath, `utf8`, (_, html) => {
 		res.status(200);
 		res.set(`Content-Type`, `text/html`);
-
-
+		
 		getAllImageInfo().then(rows => {
 			const imgEls = [...rows]
 				.map(({ id, title }) => `<li><img src="${global.location_url}/image/${id}" /><p>(${id}) ${title}</p></li>`)
