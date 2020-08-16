@@ -27,12 +27,16 @@ export const executeSQL = sql => {
     });
 };
 
+export const getAllRouteInfo = _ => {
+    const SQL = `SELECT * FROM route WHERE 1`;
+    return executeSQL(SQL);
+};
 export const getRouteInfo = id => {
     const SQL = `SELECT * FROM route WHERE id = ${id}`;
     return executeSQL(SQL);
 };
 export const getBeaconListInRoute = id => {
-    const SQL = `SELECT * FROM route_beacon WHERE route_id = ${id}`;
+    const SQL = `SELECT b.* FROM route_beacon AS r LEFT JOIN beacon AS b ON r.beacon_id = b.id WHERE r.route_id = ${id} ORDER BY r.sequence ASC`;
     return executeSQL(SQL);
 }
 
