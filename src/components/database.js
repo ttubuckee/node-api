@@ -44,3 +44,16 @@ export const getBeaconImageInfo = id => {
     const SQL = `SELECT image_id FROM beacon_image WHERE beacon_id = ${id}`;
     return executeSQL(SQL);
 }
+
+export const insertImage = ({ originalname, mimetype, path }) => {
+    const SQL = `INSERT INTO image (title, mimetype, path) VALUE ('${originalname}', '${mimetype}', '${path}')`;
+    return executeSQL(SQL);
+}
+export const getAllImageInfo = _ => {
+    const SQL = `SELECT * FROM image WHERE 1`;
+    return executeSQL(SQL);
+};
+export const getImageInfo = id => {
+    const SQL = `SELECT * FROM image WHERE id = ${id}`;
+    return executeSQL(SQL);
+}

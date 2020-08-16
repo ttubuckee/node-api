@@ -1,3 +1,5 @@
+/* global process */
+/* global global */
 /*
 	이 서버의 역할
 
@@ -12,26 +14,38 @@
 
 
  */
+
 require('dotenv').config();
-
 import express from "express";
-import mysql from "mysql";
-import beacon from './routes/beacon';
-import route from './routes/route';
+import path from "path";
 
-const app = express();
-const connection = mysql.createConnection({
-	host     : process.env.DB_HOST,
-	user     : process.env.DB_USERNAME,
-	password : process.env.DB_PASSWORD,
-	database : process.env.DB_DATABASE
-});
+// const app = express();
+// const connection = mysql.createConnection({
+// 	host     : process.env.DB_HOST,
+// 	user     : process.env.DB_USERNAME,
+// 	password : process.env.DB_PASSWORD,
+// 	database : process.env.DB_DATABASE
+// });
+//
+// app.use('/beacon',beacon);
+// app.use('/route',route);
 
-app.use('/beacon',beacon);
-app.use('/route',route);
+// app.listen(process.env.SERVER_PORT, _ => {
+// 	console.log('server is running on port '+process.env.SERVER_PORT);
+// });
 
-app.listen(process.env.SERVER_PORT,(res,req)=>{
-	console.log('server is running on port '+process.env.SERVER_PORT);
-});
+import generateImageRoute from "./routes/image";
 
 
+(_ => {
+	const app = express();
+	const { SERVER_PORT, SERVER_HOST } = process.env;
+	global.public_path = path.resolve(`${__dirname}/../public_html`);
+	global.location_url = `${SERVER_HOST}`;
+
+	app.use(`/image`, generateImageRoute());
+
+	app.listen(SERVER_PORT, _ => {
+		console.log('server is running on port '+process.env.SERVER_PORT);
+	});
+})();
