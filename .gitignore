@@ -16,6 +16,7 @@ bower_components/
 # Compiled source code
 dist/
 public_html/uploads/
+public_html/matches/
 
 # IDE
 .idea/
