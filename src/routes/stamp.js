@@ -21,11 +21,17 @@ export default function() {
 		const scriptPath = path.resolve(`${__dirname}/../surfMatching.py`);
 		const resized_path = `${file_path}_resized`;
 		imageResize(file_path, resized_path).then(_ => {
+			console.log();
 			const pythonProcess = spawn(`python`, [ scriptPath, file_path ]);
-			pythonProcess.stdout.on(`data`, data => console.log(data));
-		});
+			pythonProcess.stdout.on(`data`, data => {
+				console.log(`match result`);
+				console.log(data);
 
-		res.send(`TESTING`);
+				res.send(`TESTING`);
+			});
+
+			console.log(`resized`);
+		});
 	});
 
 	return router;
