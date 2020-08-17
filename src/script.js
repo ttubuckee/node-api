@@ -22,6 +22,7 @@ import path from "path";
 import generateImageRoute from "./routes/image";
 import generateBeaconRoute from "./routes/beacon";
 import generateRouteRoute from "./routes/route";
+import generateStampRoute from "./routes/stamp";
 
 (_ => {
 	const app = express();
@@ -32,6 +33,7 @@ import generateRouteRoute from "./routes/route";
 	app.use(`/image`, generateImageRoute());
 	app.use(`/beacon`, generateBeaconRoute());
 	app.use(`/route`, generateRouteRoute());
+	app.use(`/stamp`, generateStampRoute());
 
 	app.listen(SERVER_PORT, _ => {
 		console.log('server is running on port '+process.env.SERVER_PORT);

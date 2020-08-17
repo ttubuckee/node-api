@@ -15,6 +15,11 @@
         </style>
     </head>
     <body>
+        <h3>ARoHa! 스탬프 매칭 테스트</h3>
+        <form method="POST" enctype="multipart/form-data" action="/stamp">
+            <input type="file" accept="image/*" name="image" />
+            <button type="submit">Feature matching</button>
+        </form>
         <h3>ARoHa! 이미지 업로드</h3>
         <form method="POST" enctype="multipart/form-data" action="/image">
             <input type="file" accept="image/*" name="user_file" />

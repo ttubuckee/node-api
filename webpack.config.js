@@ -13,6 +13,9 @@ module.exports = async function(mode = `production`) {
 		optimization: { minimize: false },
 		devtool: 'cheap-eval-source-map',
 		context: __dirname,
+		externals: {
+			'sharp': 'commonjs sharp'
+		},
 		node: {
 			console: true,
 			global: true,
