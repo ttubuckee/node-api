@@ -24,7 +24,8 @@ module.exports = async function(mode = `production`) {
 			setImmediate: true,
 			__dirname: true,
 			__filename: true,
-			fs: `empty`
+			fs: `empty`,
+			child_process: `empty`
 		},
 		resolve: {
 			extensions: [`.js`],
