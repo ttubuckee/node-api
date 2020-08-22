@@ -22,11 +22,16 @@ const responseBeaconInfo = (req, res) => {
 		});
 	});
 };
+const validateStampImage = (req, res) => {
+	const { id } = req.params;
+
+};
 
 export default function() {
 	const router = express.Router();
 	router.get(`/`, responseBeaconList);
 	router.get(`/:id`, responseBeaconInfo);
+	router.post(`/:id`);
 
 	return router;
 }
