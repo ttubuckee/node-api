@@ -2,7 +2,13 @@ import express from "express";
 import { getAllRouteInfo, getBeaconListInRoute, getRouteInfo, updateUserLastRoute } from "@/components/database";
 
 const responseRouteList = (req, res) => {
-	getAllRouteInfo().then(rows => {
+	getAllRouteInfo().catch((e)=>{
+		//res.status(520);
+		//res.set(`Content-Type`, `application/json`);
+
+		//res.send(e);
+		console.log(e);
+	}).then(rows => {
 		res.status(200);
 		res.set(`Content-Type`, `application/json`);
 
@@ -51,6 +57,5 @@ export default function() {
 	router.get(`/:id`, responseRouteInfo);
 	router.post(`/:id`, startTour);
 	router.post(`/:id/complete`, endTour);
-
 	return router;
 }
