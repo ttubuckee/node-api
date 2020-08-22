@@ -3,13 +3,20 @@ import numpy as np
 import io
 import sys
 
+print (sys.argv[1])
+
 def sift_detector(file):
-    img = cv2.imread(file, 0);
+    in_memory_file = io.BytesIO()
+    file.save(in_memory_file)
+    data = np.fromstring(in_memory_file.getvalue(), dtype=np.uint8)
+    color_image_flag = 0
+    img = cv2.imdecode(data, color_image_flag)
+
     mapping_data = {0:"Kim Dae Hyeon", 1 : "Lee Dong Hyun", 2 : "Kim Seung Heon"}
     result_arr = {}
-    for i in range(0,4):
+    for i in range(0,3):
         image1 = img
-        image2 = cv2.imread("./data/test" +  str(i)  + ".jpg", 0)
+        image2 = cv2.imread(sys.argv[1], 0)
         sift = cv2.xfeatures2d.SIFT_create()
         keypoints_1, descriptors_1 = sift.detectAndCompute(image1, None)
         keypoints_2, descriptors_2 = sift.detectAndCompute(image2, None)
@@ -35,7 +42,7 @@ def sift_detector(file):
         for m,n in matches:
             if m.distance < 0.7 * n.distance:
                 good_matches.append(m)
-        #print(len(good_matches))
+        print(len(good_matches))
         result_arr[i] = len(good_matches)
 
 
@@ -52,12 +59,10 @@ def sift_detector(file):
             match_index = i
 
     ret_str = mapping_data[match_index]
+
     if max_num > 50:
-        #print(ret_str);
+        print(ret_str);
         return "True"
     else:
-        #print("doesn't match")
+        print("doesn't match");
         return "False"
-
-result = sift_detector(sys.argv[1])
-print(result)

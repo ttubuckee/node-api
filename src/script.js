@@ -24,7 +24,7 @@ import generateBeaconRoute from "./routes/beacon";
 import generateRouteRoute from "./routes/route";
 import generateStampRoute from "./routes/stamp";
 
-(_ => {
+(_ => {	
 	const app = express();
 	const { SERVER_PORT, SERVER_HOST } = process.env;
 	global.public_path = path.resolve(`${__dirname}/../public_html`);

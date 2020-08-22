@@ -1,7 +1,7 @@
 import express from "express";
 import multer from "multer";
 import path from "path";
-import { spawn } from "child_process";
+import { exec } from "child_process";
 const sharp = require('sharp');
 
 const imageResize = (file_path, resized_path) => {
@@ -17,20 +17,21 @@ export default function() {
 	const upload = multer({ dest: `${global.public_path}/matches/` });
 	const router = new express.Router();
 	router.post(`/`, upload.single(`image`), (req, res) => {
+		res.set(`Content-Type`, `application/json`)
+		
 		const { path: file_path } = req.file;
-		const scriptPath = path.resolve(`${__dirname}/../surfMatching.py`);
+		const scriptPath = path.resolve(`${__dirname}/../../surfMatching.py`);
 		const resized_path = `${file_path}_resized`;
 		imageResize(file_path, resized_path).then(_ => {
-			console.log();
-			const pythonProcess = spawn(`python`, [ scriptPath, file_path ]);
-			pythonProcess.stdout.on(`data`, data => {
-				console.log(`match result`);
-				console.log(data);
-
-				res.send(`TESTING`);
+			exec(`python ${scriptPath} ${resized_path}`, (err, stdout, stderr) => {
+				const result = `${stdout}`.trim();
+				if(result.toUpperCase() === `TRUE`) {
+					res.send({ result: true });
+					/** DB UPDATE */
+				} else {
+					res.send({ result: false });
+				}
 			});
-
-			console.log(`resized`);
 		});
 	});
 
