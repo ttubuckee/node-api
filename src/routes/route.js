@@ -1,5 +1,5 @@
 import express from "express";
-import { getAllRouteInfo, getBeaconListInRoute, getRouteInfo } from "@/components/database";
+import { getAllRouteInfo, getBeaconListInRoute, getRouteInfo, updateUserLastRoute } from "@/components/database";
 
 const responseRouteList = (req, res) => {
 	getAllRouteInfo().then(rows => {
@@ -26,11 +26,31 @@ const responseRouteInfo = (req, res) => {
 		});
 	});
 };
+const startTour = (req, res) => {
+	const { id: route_id } = req.params;
+	const { user_id } = req.body;
+
+	updateUserLastRoute(user_id, route_id).then(_ => {
+		res.set(`Content-Type`, `application/json`);
+		res.send({ result: `complete` });
+	});
+};
+const endTour = (req, res) => {
+	const { id: route_id } = req.params;
+	const { user_id } = req.body;
+
+	updateUserLastRoute(user_id, -1).then(_ => {
+		res.set(`Content-Type`, `application/json`);
+		res.send({ result: `complete` });
+	});
+};
 
 export default function() {
 	const router = express.Router();
 	router.get(`/`, responseRouteList);
 	router.get(`/:id`, responseRouteInfo);
+	router.post(`/:id`, startTour);
+	router.post(`/:id/complete`, endTour);
 
 	return router;
 }

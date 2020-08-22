@@ -24,14 +24,14 @@ const responseBeaconInfo = (req, res) => {
 };
 const validateStampImage = (req, res) => {
 	const { id } = req.params;
-
+	console.log({ id });
 };
 
 export default function() {
 	const router = express.Router();
 	router.get(`/`, responseBeaconList);
 	router.get(`/:id`, responseBeaconInfo);
-	router.post(`/:id`);
+	router.post(`/:id`, validateStampImage);
 
 	return router;
 }

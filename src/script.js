@@ -9,12 +9,14 @@ import generateBeaconRoute from "./routes/beacon";
 import generateRouteRoute from "./routes/route";
 import generateStampRoute from "./routes/stamp";
 
-(_ => {	
+(_ => {
 	const app = express();
 	const { SERVER_PORT, SERVER_HOST } = process.env;
 	global.public_path = path.resolve(`${__dirname}/../public_html`);
 	global.location_url = `${SERVER_HOST}`;
 
+	app.use(express.urlencoded({ extended: false }));
+	app.use(express.json());
 	app.use(`/image`, generateImageRoute());
 	app.use(`/beacon`, generateBeaconRoute());
 	app.use(`/route`, generateRouteRoute());

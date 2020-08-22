@@ -61,3 +61,8 @@ export const getImageInfo = id => {
     const SQL = `SELECT * FROM image WHERE id = ${id}`;
     return executeSQL(SQL);
 }
+
+export const updateUserLastRoute = (user_id, route_id) => {
+    const SQL = `UPDATE member SET last_route = ${route_id} WHERE id = ${user_id}`;
+    return executeSQL(SQL);
+}
