@@ -1,12 +1,34 @@
 import express from "express";
-import { getAllRouteInfo, getBeaconListInRoute, getRouteInfo } from "@/components/database";
+import { updateUserRoute, getAllRouteInfo, getBeaconListInRoute, getRouteInfo } from "@/components/database";
 
 const responseRouteList = (req, res) => {
-	getAllRouteInfo().then(rows => {
+	getAllRouteInfo().catch((e)=>{
+		//res.status(520);
+		//res.set(`Content-Type`, `application/json`);
+
+		//res.send(e);
+		console.log(e);
+	}).then(rows => {
 		res.status(200);
 		res.set(`Content-Type`, `application/json`);
 
 		res.send(rows);
+	});
+};
+const responseUserUpdateResult = (req,res) => {
+	const { id } = req.params;
+	const { userId } = req.body;
+	updateUserRoute(id,userId).catch((e)=>{
+		//res.status(520);
+		//res.set(`Content-Type`, `application/json`);
+
+		//res.send(e);
+		console.log(e);
+	}).then(rows => {
+		res.status(200);
+		res.set(`Content-Type`, `application/json`);
+
+		res.send(`update complete!`);
 	});
 };
 const responseRouteInfo = (req, res) => {
@@ -31,6 +53,6 @@ export default function() {
 	const router = express.Router();
 	router.get(`/`, responseRouteList);
 	router.get(`/:id`, responseRouteInfo);
-
+	router.post(`/:id`, responseUserUpdateResult);
 	return router;
 }
