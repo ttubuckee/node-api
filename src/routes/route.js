@@ -27,7 +27,7 @@ const responseRouteInfo = (req, res) => {
 		res.set(`Content-Type`, `application/json`);
 
 		getBeaconListInRoute(id).then(rows => {
-			const beacon_list = rows.map(({title, description, longitude, latitude}, index) => ({title, description, longitude, latitude, index: index + 1}));
+			const beacon_list = rows.map(({id, title, description, longitude, latitude}, index) => ({id, title, description, longitude, latitude, index: index + 1}));
 			res.send({...row, beacon_list});
 		});
 	});
