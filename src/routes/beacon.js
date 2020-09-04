@@ -6,8 +6,8 @@ const responseBeaconList = (req, res) => {
 		res.status(200);
 		res.set(`Content-Type`, `application/json`);
 		res.send(rows.map(row => {
-			const { id, title, stamp, latitude, longitude } = row;
-			return { id, title, stamp, latitude, longitude };
+			const { id, title, latitude, longitude } = row;
+			return { id, title, latitude, longitude };
 		}));
 	});
 };
