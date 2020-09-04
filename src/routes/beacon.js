@@ -1,8 +1,15 @@
 import express from "express";
-import { getBeaconInfo, getBeaconImageInfo } from "@/components/database";
+import { getBeaconInfo, getBeaconImageInfo, getBeaconList } from "@/components/database";
 
 const responseBeaconList = (req, res) => {
-	res.send(`비콘 전체 목록이 필요하다면 만들겠습니다! 대현님 ^^7`);
+	getBeaconList().then(rows => {
+		res.status(200);
+		res.set(`Content-Type`, `application/json`);
+		res.send(rows.map(row => {
+			const { id, title, stamp, latitude, longitude } = row;
+			return { id, title, stamp, latitude, longitude };
+		}));
+	});
 };
 const responseBeaconInfo = (req, res) => {
 	const { id } = req.params;

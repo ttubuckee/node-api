@@ -40,6 +40,10 @@ export const getBeaconListInRoute = id => {
     return executeSQL(SQL);
 }
 
+export const getBeaconList = _ => {
+    const SQL = `SELECT * FROM beacon WHERE 1`;
+    return executeSQL(SQL);
+};
 export const getBeaconInfo = id => {
     const SQL = `SELECT * FROM beacon WHERE id = ${id}`;
     return executeSQL(SQL);
