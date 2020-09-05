@@ -26,6 +26,14 @@ export const executeSQL = sql => {
         });
     });
 };
+export const getStampStatus = id =>{
+    const SQL = `SELECT DISTINCT beacon_id from member_stamp WHERE member_id = ${id}`;
+    return executeSQL(SQL);
+}
+export const getBeaconCnt = _ => {
+    const SQL = `SELECT COUNT(*) as cnt FROM beacon`;
+    return executeSQL(SQL);
+}
 
 export const getAllRouteInfo = _ => {
     const SQL = `SELECT * FROM route WHERE 1`;
