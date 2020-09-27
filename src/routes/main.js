@@ -52,7 +52,8 @@ const responseWeather = (req,res)=>{
 		res.set(`Content-Type`,`application/json`);
 		res.send({
 			'weather' : weather,
-			'dust' : `${dust[0]}${dust[1]} ${dust[2]}`
+			//'dust' : `${dust[0]}${dust[1]} ${dust[2]}`
+			'dust' : dust[0]+dust[1]+' '+dust[2]
 		});
 	});
 }

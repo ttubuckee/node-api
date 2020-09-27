@@ -2,14 +2,17 @@ import cv2
 import numpy as np
 import io
 import sys
+import os
 
 def sift_detector(file):
     img = cv2.imread(file, 0);
-    mapping_data = {0:"Kim Dae Hyeon", 1 : "Lee Dong Hyun", 2 : "Kim Seung Heon"}
     result_arr = {}
-    for i in range(0,4):
+    data_list = os.listdir("./data")
+    data_list_len = len(data_list)
+
+    for i in range(0,data_list_len):
         image1 = img
-        image2 = cv2.imread("./data/test" +  str(i)  + ".jpg", 0)
+        image2 = cv2.imread("./data/"+data_list[i],0)
         sift = cv2.xfeatures2d.SIFT_create()
         keypoints_1, descriptors_1 = sift.detectAndCompute(image1, None)
         keypoints_2, descriptors_2 = sift.detectAndCompute(image2, None)
@@ -53,8 +56,8 @@ def sift_detector(file):
 
     ret_str = mapping_data[match_index]
     if max_num > 50:
-        #print(ret_str);
-        return "True"
+        #print("matched img : "+data_list[i]);
+        return data_list[i]
     else:
         #print("doesn't match")
         return "False"
