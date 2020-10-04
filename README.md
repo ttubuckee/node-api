@@ -68,6 +68,7 @@
  ``` javascript
  {"id":1,"title":"수의학관","description":"수의학관에 대한 정보를 입력합니다.","stamp":null,"latitude":37.539097,"longitude":127.074711,"image_list":[]}
  ```
+ <br>
 
 ## /image   
 | Members | Descriptions |
@@ -80,7 +81,7 @@
 <br>
 
 이미지를 업로드할 수 있는 페이지를 렌더링합니다.
-<br>
+<br><br>
 
 ### GET /image/{image_id}/ : 해당 image_id 이미지 전송
 <br>
