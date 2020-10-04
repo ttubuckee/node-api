@@ -18,7 +18,7 @@
 <br>
  HTTP Result Code가 200 OK일 때 전체 비콘 좌표 리스트를 반환합니다.
  
- <br>
+<br>
  * #### Response   
 <br> 
 
