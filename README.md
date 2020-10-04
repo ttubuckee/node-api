@@ -36,7 +36,7 @@
  ```   
  <br>
  
-### GET /beacon/{beacon_id} : 해당 beacon_id 비콘 정보 조회   
+### GET /beacon/{beacon_id}/ : 해당 beacon_id 비콘 정보 조회   
 <br>
  HTTP Result Code가 200 OK일 때 해당 beacon_id 비콘 좌표 리스트를 반환합니다.
 
@@ -46,7 +46,8 @@
 
  | Parameter | Type | Description |
  |:---|:---|:---|
- | user_id | | 조회할 사용자 ID |
+ | user_id | | 조회할 사용자 ID |   
+ <br>
  
  * #### Response   
 <br> 
@@ -82,16 +83,24 @@
 이미지를 업로드할 수 있는 페이지를 렌더링합니다.
 <br>
 
-### GET /image/{image_id}
+### GET /image/{image_id}/ : 해당 image_id 이미지 전송
 <br>
-해당 image_id 
+HTTP Result Code가 200 OK일 때 image_id에 해당하는 이미지를 반환합니다.
 
   * #### Request Parameters   
 <br> 
 
  | Parameter | Type | Description |
  |:---|:---|:---|
+ | image_id | int | 이미지 아이디 |
+ <br>
  
+   * #### Response Parameters   
+<br> 
+
+| Field | Type | Description |
+|:---|:---|:---|
+| image | object | 이미지 파일 전송 |
 
 ## /main   
 | Members | Descriptions |
@@ -99,6 +108,40 @@
 | GET /main/weather | 현재 날씨 정보 조회 |
 | GET /main/{user_id} | 현재 스탬프 수집 정보 조회 |
 <br>
+
+### GET /main/weather/ : 현재 날씨 정보 조회
+<br>
+
+ HTTP Result Code가 200 OK일 때 현재 날씨 정보를 반환 합니다.
+
+ <br>
+ 
+ * #### Response
+ <br>
+ 
+ | Field | Type | Description |
+ |:---|:---|:---|
+ | weather | string | 현재 날씨 정보 |
+ | dust | string | 현재 미세먼지 정보 |
+ <br>
+ 
+ #### 성공 예제:
+ <br>
+ 
+ ``` javascript
+ {"weather":"구름많음, 어제보다 0˚ 높아요","dust":"23㎍/㎥ 좋음"}
+ ```
+ <br>
+ 
+ ### GET /main/{user_id} : 현재 스탬프 수집 정보 조회
+ <br>
+ 
+ * Request Parameters
+ <br>
+ 
+ | Parameters | Type | Description |
+ 
+ 
 
 ## /route   
 | Members | Descriptions |
