@@ -16,9 +16,9 @@
 
 ### GET /beacon/ : 전체 비콘 좌표 리스트 조회 
 <br>
- HTTP Result Code가 200 OK일 때 전체 비콘 좌표 리스트를 반환합니다.
- 
+ HTTP Result Code가 200 OK일 때 전체 비콘 좌표 리스트를 반환합니다. 
 <br>
+
  * #### Response   
 <br> 
 
@@ -93,9 +93,8 @@ HTTP Result Code가 200 OK일 때 image_id에 해당하는 이미지를 반환�
  | Parameter | Type | Description |
  |:---|:---|:---|
  | image_id | int | 이미지 아이디 |
- <br>
  
-   * #### Response Parameters   
+   * #### Response
 <br> 
 
 | Field | Type | Description |
@@ -208,7 +207,6 @@ HTTP Result Code가 200 OK일 때 해당 경로 정보를 반환 합니다.
 | Parameters | Type | Description |
 |:---|:---|:---|
 | route_id | int | 경로 id |
-<br>
 
 * #### Response
 <br>
@@ -240,7 +238,6 @@ HTTP Result Code가 200 OK일 때 유저의 최근 경로 정보를 업데이트
 | Parameters | Type | Description |
 |:---|:---|:---|
 | route_id | int | 경로 id|
-<br>
 
 * #### Body 
 <br>
@@ -248,7 +245,6 @@ HTTP Result Code가 200 OK일 때 유저의 최근 경로 정보를 업데이트
 |Parameters| Type | Description | 
 |:---|:---|:---|
 | user_id | int | 유저 id |
-<br>
 
 * #### Response
 <br>
@@ -278,7 +274,6 @@ HTTP Result Code가 200 OK일 때 유저의 경로 정보를 업데이트 합니
 | Parameters | Type | Description |
 |:---|:---|:---|
 | route_id | int | 경로 id |
-<br>
 
 * #### Body
 <br>
@@ -286,7 +281,6 @@ HTTP Result Code가 200 OK일 때 유저의 경로 정보를 업데이트 합니
 | Parameters | Type | Description |
 |:---|:---|:---|
 | uesr_id | int | 유저 id |
-<br>
 
 * #### Response
 <br>
@@ -322,7 +316,6 @@ HTTP Result Code가 200 OK일 때 스탬프 식별 결과를 전송
 | Parameters | Type | Description |
 |:---|:---|:---|
 | image | object | 이미지 파일 |
-<br>
 
 * #### Response
 <br>
@@ -330,7 +323,6 @@ HTTP Result Code가 200 OK일 때 스탬프 식별 결과를 전송
 | Field | Type | Description |
 |:---|:---|:---|
 | result | string | 이미지 비교 결과 반환 |
-<br>
 
 #### 성공 예제:
 <br>
