@@ -17,7 +17,8 @@
 ### GET /beacon/ : 전체 비콘 좌표 리스트 조회 
 <br>
  HTTP Result Code가 200 OK일 때 전체 비콘 좌표 리스트를 반환합니다.
-
+ 
+ <br>
  * #### Response   
 <br> 
 
@@ -226,12 +227,116 @@ HTTP Result Code가 200 OK일 때 해당 경로 정보를 반환 합니다.
 ```
 <br>
 
+### POST /route/{route_id} : 투어 시작시 유저의 정보 업데이트
+<br>
+
+HTTP Result Code가 200 OK일 때 유저의 최근 경로 정보를 업데이트 합니다.
+<br>
+
+* #### Request Parameters
+<br>
+
+| Parameters | Type | Description |
+|:---|:---|:---|
+| route_id | int | 경로 id|
+<br>
+
+* #### Body 
+<br>
+
+|Parameters| Type | Description | 
+|:---|:---|:---|
+| user_id | int | 유저 id |
+<br>
+
+* #### Response
+<br>
+
+| Field | Type | Description |
+|:---|:---|:---|
+| result | string | 업데이트 성공 메세지 |
+<br>
+
+#### 성공 예제:
+<br>
+
+``` javascript
+{"result":"complete"}
+```
+<br>
+
+### POST /route/{route_id} : 투어 종료시 유저의 경로 정보 업데이트
+<br>
+
+HTTP Result Code가 200 OK일 때 유저의 경로 정보를 업데이트 합니다.
+<br>
+
+* #### Request Parameters
+<br>
+
+| Parameters | Type | Description |
+|:---|:---|:---|
+| route_id | int | 경로 id |
+<br>
+
+* #### Body
+<br>
+
+| Parameters | Type | Description |
+|:---|:---|:---|
+| uesr_id | int | 유저 id |
+<br>
+
+* #### Response
+<br>
+
+| Field | Type | Description |
+|:---|:---|:---|
+| result | string | 업데이트 성공 메세지 |
+<br>
+
+#### 성공 예제:
+<br>
+
+``` javascript
+{"result":"complete"}
+```
+<br>
+
 ## /stamp   
 | Members | Descriptions |
 |:---|:---|
 | POST /stamp/ | 스탬프 식별 결과 전송 |
 <br>
 
+### POST /stamp/ : 스탬프 식별 결과 전송
+<br>
+
+HTTP Result Code가 200 OK일 때 스탬프 식별 결과를 전송
+<br>
+
+* #### Body
+<br>
+
+| Parameters | Type | Description |
+|:---|:---|:---|
+| image | object | 이미지 파일 |
+<br>
+
+* #### Response
+<br>
+
+| Field | Type | Description |
+|:---|:---|:---|
+| result | string | 이미지 비교 결과 반환 |
+<br>
+
+#### 성공 예제:
+<br>
+
+``` javascript
+{"result":"1"}
+```
 
 
 
