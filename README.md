@@ -147,16 +147,16 @@ HTTP Result Code가 200 OK일 때 image_id에 해당하는 이미지를 반환�
  * #### Response
  <br>
  
- // 여기 성공 예제 추가해야 함
  | Field | Type | Description |
  |:---|:---|:---|
- 
+ | stamp_status | array | 스탬프 번호 리스트 |
+ | stamp_ahcievement | double | 획득 퍼센트 |
  
  #### 성공 예제:
  <br>
  
  ``` javascript
- 
+ {"stamp_status":[1,2],"stamp_achievement":7.6923076923076925}
  ```
  
 
