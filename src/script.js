@@ -1,8 +1,10 @@
 /* global process */
 /* global global */
 require('dotenv').config();
+import process from "process";
 import express from "express";
 import path from "path";
+import fs from "fs";
 
 import generateImageRoute from "./routes/image";
 import generateBeaconRoute from "./routes/beacon";
@@ -25,6 +27,9 @@ import generateMainPage from "./routes/main";
 	app.use(`/main`, generateMainPage());
 
 	app.listen(SERVER_PORT, _ => {
+		const { pid } = process;
+		
+		fs.writeFile(`./PID`, pid, 'utf8', _ => {});
 		console.log('server is running on port '+process.env.SERVER_PORT);
 	});
 })();

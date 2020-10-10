@@ -26,10 +26,12 @@ export const executeSQL = sql => {
         });
     });
 };
-export const getStampStatus = id =>{
+
+export const getStampRatio = id =>{
     const SQL = `SELECT DISTINCT beacon_id from member_stamp WHERE member_id = ${id}`;
     return executeSQL(SQL);
 }
+
 export const getBeaconCnt = _ => {
     const SQL = `SELECT COUNT(*) as cnt FROM beacon`;
     return executeSQL(SQL);
@@ -80,5 +82,9 @@ export const updateUserLastRoute = (user_id, route_id) => {
 }
 export const getImagePaths = _ => {
     const SQL = `SELECT * FROM image`;
+    return executeSQL(SQL);
+}
+export const getStampStatus = ({ member_id,route_id,beacon_id }) => {
+    const SQL = `INSERT INTO member_stamp (member_id,route_id,beacon_id) VALUE ('${member_id}', '${route_id}', '${beacon_id}')`;
     return executeSQL(SQL);
 }

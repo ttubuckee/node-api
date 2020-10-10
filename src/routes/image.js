@@ -4,18 +4,34 @@ import fs from "fs";
 import multer from "multer";
 import { insertImage, getImageInfo, getAllImageInfo } from "@/components/database";
 
+const _featureImageList = _ => {
+	return new Promise(resolve => {
+		fs.readdir(`${global.public_path}/../data/`, (err, files) => {
+/*
+			files.forEach(file => {
+				console.log(file);
+			});
+*/
+			resolve(files);
+		});
+	});
+};
+
 const responseImageUploadForm = (_, res) => {
 	const htmlPath = `${global.public_path}/image_upload.html`;
 	fs.readFile(htmlPath, `utf8`, (_, html) => {
 		res.status(200);
 		res.set(`Content-Type`, `text/html`);
 
-		getAllImageInfo().then(rows => {
-			const imgEls = [...rows]
-				.map(({ id, title }) => `<li><img src="${global.location_url}/image/${id}" /><p>(${id}) ${title}</p></li>`)
-				.join(``);
-
-			res.end(html.replace(`{{image_list}}`, imgEls), `utf-8`);
+		Promise.all([ getAllImageInfo(), _featureImageList() ]).then(([ imageRows, featureRows ]) => {
+			const imgEls = imageRows.map(({ id, title }) => `<li><img src="${global.location_url}/image/${id}" /><p>(${id}) ${title}</p></li>`).join(``);
+			const featureEls = featureRows.map(e => `<li>${e}</li>`).join(``);
+			
+			const responseHtml = html
+				.replace(`{{image_list}}`, imgEls)
+				.replace(`{{feature_list}}`, featureEls)
+				.replace(`{{feature_count}}`, featureRows.length);
+			res.end(responseHtml, `utf-8`);
 		});
 	});
 };

@@ -1,7 +1,7 @@
 import express from "express";
 import cheerio from "cheerio";
 import request from "request";
-import { getStampStatus, getBeaconCnt } from "@/components/database";
+import { getStampRatio, getBeaconCnt } from "@/components/database";
 
 /**
  * json
@@ -19,7 +19,7 @@ const responseMainPage = (req,res) => {
 	//const p1 = getStampStatus;
 	//const p2 = getBeaconCnt;
 
-	getStampStatus(id).then(val=>{
+	getStampRatio(id).then(val=>{
 		json["stamp_status"] = val.map(e=>e.beacon_id);
 		getBeaconCnt().then(val=>{
 			const total = val[0].cnt;
@@ -57,12 +57,8 @@ const responseWeather = (req,res)=>{
 		});
 	});
 }
-const test = (req,res)=>{
-	console.log("testing");
-};
 export default function() {
 	const router = express.Router();
-	router.get(`/`,test);
 	router.get(`/weather`,responseWeather);
 	router.get(`/:id`, responseMainPage);
 	return router;
