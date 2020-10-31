@@ -24,21 +24,23 @@ export default function() {
 		res.set(`Content-Type`, `application/json`)
 		console.log(req.body, req.file);
 		const { path: file_path } = req.file;
-		const scriptPath = path.resolve(`${__dirname}/../../surfMatching.py`);
-		
+		//const scriptPath = path.resolve(`${__dirname}/../../surfMatching.py`);
+		const scriptPath = `${__dirname}\/..\/..\/surfMatching.py`;
+		console.log({scriptPath});
 		const resized_path = `${file_path}_resized`;
 		imageResize(file_path, resized_path).then(_ => {
 			exec(`python ${scriptPath} ${resized_path}`, (err, stdout, stderr) => {
 				let result = `${stdout}`.trim();
-				 if(result.toUpperCase() === `FALSE`) {
+				console.log({stderr});
+				console.log({stdout});
+				if(result.toUpperCase() === `FALSE`) {
 					console.log("실패");
-					res.send({ result: false });
-				} else {
+					res.send({ result: "FALSE"});
+				} else { // 성공적으로 수행되었을 때
 					// DB UPDATE 
-					result = result.replace(/[.]*[a-z]/,'')
+					result = result.replace(/[.][a-z]*/g,'');
 					console.log("성공 : "+result);
-					res.send({ result: result});							
-				}
+					res.send({ result: result});						}
 			});
 		});
 	});

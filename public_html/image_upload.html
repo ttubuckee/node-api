@@ -27,5 +27,14 @@
         </form>
         <h3>ARoHa! 이미지 목록</h3>
         <ul>{{image_list}}</ul>
+        <div style="height: 50px;"></div>
+        <h3>ARoHa! 스탬프 FeatureMatching 이미지 업로드</h3>
+        <form method="POST" enctype="multipart/form-data" action="/stamp/compare">
+	        <input type="text" name="beacon_id" />
+            <input type="file" accept="image/*" name="image" />
+            <button type="submit">전송</button>
+        </form>
+        <h3>ARoHa! FeatureMatching 이미지 ./data ({{feature_count}} 개)</h3>
+        <ul>{{feature_list}}</ul>
     </body>
 </html>

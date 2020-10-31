@@ -10,9 +10,9 @@ def sift_detector(file):
     data_list = os.listdir("./data")
     data_list_len = len(data_list)
 
-    for i in range(0,data_list_len):
+    for index in range(0,data_list_len):
         image1 = img
-        image2 = cv2.imread("./data/"+data_list[i],0)
+        image2 = cv2.imread("./data/"+data_list[index],0)
         sift = cv2.xfeatures2d.SIFT_create()
         keypoints_1, descriptors_1 = sift.detectAndCompute(image1, None)
         keypoints_2, descriptors_2 = sift.detectAndCompute(image2, None)
@@ -39,7 +39,7 @@ def sift_detector(file):
             if m.distance < 0.7 * n.distance:
                 good_matches.append(m)
         #print(len(good_matches))
-        result_arr[i] = len(good_matches)
+        result_arr[index] = len(good_matches)
 
 
     #
@@ -48,16 +48,14 @@ def sift_detector(file):
     i = 0
     values = result_arr.values();
     for value in values:
-        i += 1
         if max_num < value :
             max_num = value
         if value == max_num : 
             match_index = i
-
-    ret_str = mapping_data[match_index]
+        i+=1
     if max_num > 50:
         #print("matched img : "+data_list[i]);
-        return data_list[i]
+        return data_list[match_index]
     else:
         #print("doesn't match")
         return "False"

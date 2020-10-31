@@ -46,7 +46,8 @@ const responseWeather = (req,res)=>{
 	request('https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query=%ED%99%94%EC%96%91%EB%8F%99+%EB%82%A0%EC%94%A8',(err,response,body)=>{
 		const $ = cheerio.load(body);
 		const weather = $(`#main_pack > div.sc.cs_weather._weather > div:nth-child(2) > div.weather_box > div.weather_area._mainArea > div.today_area._mainTabContent > div.main_info > div > ul > li:nth-child(1) > p`).text();
-		const dust = $(`#main_pack > div.sc.cs_weather._weather > div:nth-child(2) > div.weather_box > div.weather_area._mainArea > div.today_area._mainTabContent > div.sub_info > div > dl > dd:nth-child(2)`).text().split(/(㎍\/㎥)/);
+		const dust = $('#main_pack > section.sc_new.cs_weather._weather > div > div.api_cs_wrap > div.weather_box > div.weather_area._mainArea > div.today_area._mainTabContent > div.sub_info > div > dl > dd:nth-child(2) > span.num').text().split(/(㎍\/㎥)/);
+		//const dust = $(`#main_pack > div.sc.cs_weather._weather > div:nth-child(2) > div.weather_box > div.weather_area._mainArea > div.today_area._mainTabContent > div.sub_info > div > dl > dd:nth-child(2)`).text().split(/(㎍\/㎥)/);
 
 		res.status(200);
 		res.set(`Content-Type`,`application/json`);

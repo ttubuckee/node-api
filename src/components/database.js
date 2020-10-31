@@ -88,3 +88,4 @@ export const getStampStatus = ({ member_id,route_id,beacon_id }) => {
     const SQL = `INSERT INTO member_stamp (member_id,route_id,beacon_id) VALUE ('${member_id}', '${route_id}', '${beacon_id}')`;
     return executeSQL(SQL);
 }
+

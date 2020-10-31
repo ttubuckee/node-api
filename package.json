@@ -7,7 +7,9 @@
     "start": "cp .env dist/.env && node ./dist/script.js",
     "cleanup": "rm -rf dist && mkdir dist",
     "build": "npm run cleanup && ./node_modules/.bin/webpack --mode=production --optimize-minimize",
-    "build:watch": "npm run cleanup && ./node_modules/.bin/webpack --mode=none --watch"
+    "build:watch": "npm run cleanup && ./node_modules/.bin/webpack --mode=none --watch",
+    "rebuild": "npm run terminate && npm run build && npm start &",
+    "terminate": "node dist/terminate.js"
   },
   "keywords": [],
   "author": "",

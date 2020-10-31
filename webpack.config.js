@@ -4,7 +4,8 @@ const distPath = path.resolve(__dirname, `./dist/`);
 
 module.exports = async function(mode = `production`) {
 	const entryFiles = {
-		script: `${srcPath}/script.js`
+		script: `${srcPath}/script.js`,
+		terminate: `${srcPath}/terminate.js`
 	};
 
 	return {
