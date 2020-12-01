@@ -53,7 +53,7 @@ def sift_detector(file):
         if value == max_num : 
             match_index = i
         i+=1
-    if max_num > 50:
+    if max_num > 25:
         #print("matched img : "+data_list[i]);
         return data_list[match_index]
     else:
