@@ -23,6 +23,8 @@ $ npm run build:watch
 $ npm run start
 ```
 
+<img />
+
 ## /beacon    
 | Members | Descriptions |
 |:---|:---|
