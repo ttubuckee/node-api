@@ -5,7 +5,23 @@
 * Servers: http://api.ar.konk.uk/   
 
 건국대학교 졸업프로젝트 ARmera 서버통신 api입니다.<br><br>
-<br>   
+<br>
+
+## How to install
+```bash
+$ git clone https://github.com/ARmera/node-api
+$ cd node-api
+$ npm install
+
+# For production
+$ npm run build
+
+# For development
+$ npm run build:watch
+
+# Start server
+$ npm run start
+```
 
 ## /beacon    
 | Members | Descriptions |
