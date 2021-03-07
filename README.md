@@ -2,7 +2,7 @@
 <br>
 
 * version: 1.0.0
-* Servers: http://api.ar.konk.uk/ (현재 서버 )
+* Servers: http://api.ar.konk.uk/ (현재 서버 내)
 
 건국대학교 졸업프로젝트 ARmera 서버통신 api입니다.<br><br>
 <br>
